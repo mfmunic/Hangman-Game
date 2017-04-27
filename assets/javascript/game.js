@@ -114,20 +114,22 @@ window.onkeyup = function(event){
 			console.log("1; guessesLeft"+guessesLeft);
 			document.getElementById("dead").innerHTML = guessesLeft;
 			document.getElementById("wrongSpace").innerHTML = arrayWrong.join(" ");
+				if (arrayWrong.length == 9) {
+					//guessesLeft--;
+					console.log("2; guessesLeft"+guessesLeft);
+					document.getElementById("dead").innerHTML = guessesLeft;
+					setTimeout(dead(), 1000);
+				}
 		}//end of if not in word
 		
 		//9 wrong answers ends game
-		if (arrayWrong.length == 9) {
-			//guessesLeft--;
-			console.log("2; guessesLeft"+guessesLeft);
-			document.getElementById("dead").innerHTML = guessesLeft;
-			dead();
-		}
+
 	}//end of validate and run if statement	
 }//end of on key function
 
 function dead(){
-	alert("You have Died!")
+	document.getElementById("dead").innerHTML = guessesLeft;
+	setTimeout(alert("You have Died!"), 1000);
 
 	arrayWrong.length = 0;//reset arrays
 	arrayBlanks.length = 0;
@@ -144,6 +146,8 @@ function dead(){
 function win(){
 	bannerRec.push(houseIx);
 
+
+
 	arrayWrong.length = 0;//reset arrays
 	arrayBlanks.length = 0;
 	arrayGuesses.length = 0;
@@ -153,7 +157,11 @@ function win(){
 	document.getElementById("wrongSpace").innerHTML = arrayWrong.join(" ");
 	winBanner();
 	if(bannerRec.length == 5){
-		winbanner();
+		winBanner();
+
+		var audio = new Audio('assets/images/theme_song.mp3');
+		audio.play();
+
 		bannerRec.length = 0;
 		alert("You may sit on the Iron Throne");
 		location.reload();
