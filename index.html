@@ -1,10 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
-<body>
+	<head>
+		<title>GOH</title>
 
-</body>
-<script type="text/javascript" src="assets/javascript/game.js"></script>
+		<!-- bootstrapcdn -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	</head>
+
+	<body onload="createBlanks()">
+		
+		<div id="middle">
+		<div class="jumbotron">
+			 <div class="container">
+  				<h1><a href="http://fontmeme.com/game-of-thrones-font/"><img src="http://fontmeme.com/permalink/170426/fe8840e5213a97c7540b5a744aa44b4a.png" alt="game-of-thrones-font" border="0"></a></h1>
+				<!-- http://fontmeme.com/game-of-thrones-font/ -->
+  			 </div>
+		</div>
+
+		<h2>Collect 5 Banners</h2>
+		
+		<div id="bannersWon">
+			<ul id="wonBanners">
+			</ul>
+		</div>
+		
+		<h3>In the Game of Hangman you either win or you die</h3>
+
+		<div class="row">
+  			<div class="col-md-6">
+				<section id="bannerHolder">
+					<img id="banner" src="#">
+				<!-- <p>From the House <a id="house"></a></p> -->
+				</section>
+			</div>
+			<div class="col-md-6">
+				<aside id="wordArea">
+					<p id="wordSpace"></p>
+					<p id="wrongSpace"></p>
+					<p><span id="dead"></span> Guesses Left</p>
+				</aside>
+			</div>
+
+		</table>
+	</body>
+
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+
 </html>

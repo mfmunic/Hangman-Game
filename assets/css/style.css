@@ -1,0 +1,68 @@
+body {
+	
+	background: url("http://cdn.artofthetitle.com/assets/resized/sm/upload/8o/la/zi/lr/got_map-0-1280-0-1024.jpg") no-repeat center center;
+	background-size: cover;
+	
+	}
+
+#middle {
+	width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: tan;
+	padding:10px;
+}
+
+.jumbotron{
+	margin-top: 0px;
+	margin-bottom: 10px;
+	border-radius: 10px 10px;
+	background: url("https://i.ytimg.com/vi/iN8PKcNGcuI/maxresdefault.jpg") no-repeat center center;
+}
+
+.container{
+	height: 200px;
+}
+
+h1 a{
+	width: 30%;
+	top: 10px;
+	text-shadow: 5px 5px 5px;
+}
+
+h2{
+	float: left;
+}
+#bannersWon{
+	height: 150px;
+	float: left;
+}
+
+ul {
+	list-style-type: none;
+}
+
+li {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+h3 {
+	clear:both;
+	text-align: center;
+}
+
+#bannerHolder {
+	margin: 0px;
+	text-align: center;
+}
+
+#banner {
+	height: 400px;
+}
+
+#wordArea {
+	margin: 0px;
+	text-align: center;
+	font-size: 30px;
+}
