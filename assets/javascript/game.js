@@ -3,12 +3,17 @@
 //by Marc F. Munic
 
 //global variable farm
-var house = ["lannister", "targaryen", "stark", "baratheon", "tully"];
+var house = ["lannister", "targaryen", "stark", "baratheon", "tully", "tarth", "mormont", "baelish", "greyjoy", "clegane"];
 var objHouse =	{lannister: ["cersei", "tyrion", "tywin", "jaime"],
 				targaryen: ["daenerys", "viserys"],
-				stark: ["ned", "bran", "arya", "robb", "sansa", "rickon"],
-				baratheon: ["robert", "joffrey", "stannis", "renly"],
-				tully: ["catelyn", "lysa"]
+				stark: ["eddard", "bran", "arya", "robb", "sansa", "rickon"],
+				baratheon: ["robert", "joffrey", "stannis", "renly", "tommen", "myrcella"],
+				tully: ["catelyn", "lysa"],
+				tarth: ["brienne"],
+				mormont: ["jeor", "jorah"],
+				baelish: ["petyr"],
+				greyjoy: ["theon"],
+				clegane: ["gregor", "sandor"],
 				}
 
 var word = "";
@@ -34,6 +39,8 @@ var checkWin = 0;
 
 //create spaces for number of letters in word
 function createBlanks() {
+
+	document.getElementById("playAgain").style.visibility = "hidden";
 
 	//pick a random house and make sure the banner was not already collected.
 	var houseSet = function(){
@@ -78,7 +85,7 @@ window.onkeyup = function(event){
 	var checkLoss = 0
 
 	//validate
-	if (alphabet.includes(event.key) && !arrayGuesses.includes(event.key)){
+	if (alphabet.includes(event.key) && !arrayGuesses.includes(event.key) && guessesLeft > 0 ){
 		arrayGuesses.push(letter);
 
 		//check word for letter guesses
@@ -104,72 +111,62 @@ window.onkeyup = function(event){
 		}//end of for loop
 
 		if (checkWin == word.length){
-			win();
+			bannerRec.push(houseIx);
+			winBanner();
+				if(bannerRec.length == 5){
+					document.getElementById("tagLine").innerHTML = "You May Sit on the Iron Throne";
+					document.getElementById("banner").src = "assets/images/Iron_Throne.jpg";
+					var audio = new Audio('assets/images/theme_song.mp3');
+					audio.play();
+					
+				}
+			document.getElementById("playAgain").style.visibility = "visible";
+				
 		}
 
 		//if letter is not in word
 		if (checkLoss == 0) {
+			if (guessesLeft > 0){
 			arrayWrong.push(letter);
 			guessesLeft--;
 			console.log("1; guessesLeft"+guessesLeft);
 			document.getElementById("dead").innerHTML = guessesLeft;
 			document.getElementById("wrongSpace").innerHTML = arrayWrong.join(" ");
+			}
 				if (arrayWrong.length == 9) {
 					//guessesLeft--;
 					console.log("2; guessesLeft"+guessesLeft);
-					document.getElementById("dead").innerHTML = guessesLeft;
-					setTimeout(dead(), 1000);
+					document.getElementById("playAgain").style.visibility = "visible";
 				}
 		}//end of if not in word
-		
-		//9 wrong answers ends game
-
 	}//end of validate and run if statement	
 }//end of on key function
 
-function dead(){
-	document.getElementById("dead").innerHTML = guessesLeft;
-	setTimeout(alert("You have Died!"), 1000);
+function reset(){
 
-	arrayWrong.length = 0;//reset arrays
+	if (bannerRec.length == 5){
+
+		window.location.reload(false);
+
+	} else {arrayWrong.length = 0;//reset arrays
+
 	arrayBlanks.length = 0;
 	arrayGuesses.length = 0;
 	guessesLeft = 9;
+
 	//dispay arrays
 	document.getElementById("wrongSpace").innerHTML = arrayBlanks.join(" ");
 	document.getElementById("wrongSpace").innerHTML = arrayWrong.join(" ");
 
 	createBlanks();
-}
-
-
-function win(){
-	bannerRec.push(houseIx);
-
-
-
-	arrayWrong.length = 0;//reset arrays
-	arrayBlanks.length = 0;
-	arrayGuesses.length = 0;
-	
-	//dispay arrays
-	document.getElementById("wrongSpace").innerHTML = arrayBlanks.join(" ");
-	document.getElementById("wrongSpace").innerHTML = arrayWrong.join(" ");
-	winBanner();
-	if(bannerRec.length == 5){
-		winBanner();
-
-		var audio = new Audio('assets/images/theme_song.mp3');
-		audio.play();
-
-		bannerRec.length = 0;
-		alert("You may sit on the Iron Throne");
-		location.reload();
 	}
-	createBlanks();
+
+	
 }
 
 function winBanner(){
+	guessesLeft = 0;
+
 	var listItem = document.createElement("li");
 	var wonBanner = document.createElement("img");
 
