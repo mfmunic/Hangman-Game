@@ -37,6 +37,12 @@ var guessesLeft = 9;
 var arrayWrong = [];
 var checkWin = 0;
 
+/* card flip */
+$(".flip").hover(function(){
+  $(this).find(".card").toggleClass("flipped");
+  return false;
+});
+
 //create spaces for number of letters in word
 function createBlanks() {
 
@@ -62,7 +68,8 @@ function createBlanks() {
 	housePick = house[houseIx];
 	word = objHouse[housePick][Math.floor(Math.random()*objHouse[housePick].length)];
 		
-	document.getElementById("banner").src = "assets/images/"+housePick+".png";
+	$("#banner").src = "assets/images/"+housePick+".png";
+	$("#hint").src = "assets/images/Iron_Throne.jpg";
 
 	//cheat
 	console.log(housePick);
@@ -77,6 +84,14 @@ function createBlanks() {
 	document.getElementById("dead").innerHTML = guessesLeft;
 	// document.getElementById("house").innerHTML = housePick.charAt(0).toUpperCase() + housePick.slice(1);
 	document.getElementById("wordSpace").innerHTML = arrayBlanks.join("");
+
+
+	/* card flip */
+	$(".flip").hover(function(){
+  		$(this).find(".card").toggleClass("flipped");
+  		return false;
+		});
+
 }//end for createBlanks
 
 
